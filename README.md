@@ -1,16 +1,32 @@
 # ecomm
 
-A new Flutter project.
+<details>
+<summary> <h1> Tugas 2 </h1> </summary>
 
-## Getting Started
+# Pertanyaan 1
+ 
+## Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
 
-This project is a starting point for a Flutter application.
+_Stateless widget_ adalah tipe widget yang statik, _stateless widget_ tidak akan bisa di ganti atributnya jika sudah di _build_. _Stateful widget_ adalah tipe widget yang _mutable_ dan interaktif.
 
-A few resources to get you started if this is your first Flutter project:
+# Pertanyaan 2
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Saya menggunakan `MaterialApp` sebagai container utama, `Scaffold` untuk _layout_, `Column` untuk menata dalam bentuk kolom, `SnackBar` untuk menunjukkan _pop up_ saat tombol di-klik, `AppBar` untuk menunjukkan teks di bagian atas _viewport_, `Text` untuk menunjukkan teks, `ElevatedButton` untuk menyediakan tombol, dan `Center` untuk menengahkan widget lainnya.
+
+# Pertanyaan 3
+
+## Apa fungsi dari `setState()`? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+
+`setState()` digunakan untuk mengubah state pada suatu `StatefulWidget`. Variabel yang ada dalam `StatefulWidget` tersebut dapat dimanipulasi oleh `setState()`.
+
+# Pertanyaan 4
+
+## Jelaskan perbedaan antara const dengan final.
+
+`const` dan `final` dua-duanya merupakan _prefix_ yang membuat suatu elemen menjadi _immutable_. Bedanya adalah `const` ditetapkan saat _compile time_ sedangkan `final` ditetapkan saat _runtime_. 
+
+# Pertanyaan 5
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
