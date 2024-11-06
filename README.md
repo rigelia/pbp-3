@@ -30,3 +30,19 @@ Saya menggunakan `MaterialApp` sebagai container utama, `Scaffold` untuk _layout
 # Pertanyaan 5
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
+
+### Membuat sebuah program Flutter baru dengan tema E-Commerce yang sesuai dengan tugas-tugas sebelumnya.
+
+Dengan menggunakan `flutter create` dan `flutter run`.
+
+### Membuat tiga tombol sederhana dengan ikon dan teks
+
+Menggunakan `ElevatedButton.icon` untuk membuat tombol dan teks sekaligus.
+
+### Mengimplementasikan warna-warna yang berbeda untuk setiap tombol
+
+Pada widget `ElevatedButton`, mengubah atribut `backgroundColor` untuk setiap tombol berbeda.
+
+### Memunculkan Snackbar dengan tulisan
+
+Dengan menggunakan kombinasi widget `ScaffoldMessenger` dan `SnackBar` dimana `ScaffoldMessenger` memanggil `ShowSnackBar` untuk memunculkan teks.
