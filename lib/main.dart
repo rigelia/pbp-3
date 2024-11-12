@@ -8,102 +8,160 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.blue,
+          textTheme: ButtonTextTheme.primary,
+        ),
+      ),
+      home: MainPage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('E-Commerce idk'),
+        title: Text('Halaman Utama'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      drawer: Drawer(
+        child: ListView(
           children: [
-            // "Lihat Daftar Produk" Button
-            ElevatedButton.icon(
-              icon: Icon(Icons.list, size: 24, color: Colors.white),
-              label: Text(
-                'Lihat Daftar Produk',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 5,
-              ),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: Text(
-                          'Kamu telah menekan tombol Lihat Daftar Produk')),
-                );
+            ListTile(
+              title: Text('Halaman Utama'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => MainPage()));
               },
             ),
-            SizedBox(height: 20),
-
-            // "Tambah Produk" Button
-            ElevatedButton.icon(
-              icon: Icon(Icons.add, size: 24, color: Colors.white),
-              label: Text(
-                'Tambah Produk',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 5,
-              ),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content: Text('Kamu telah menekan tombol Tambah Produk')),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-
-            // "Logout" Button
-            ElevatedButton.icon(
-              icon: Icon(Icons.logout, size: 24, color: Colors.white),
-              label: Text(
-                'Logout',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 5,
-              ),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Kamu telah menekan tombol Logout')),
-                );
+            ListTile(
+              title: Text('Tambah Item'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FormPage()));
               },
             ),
           ],
+        ),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('Tambah Item'),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FormPage()));
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class FormPage extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tambah Item'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: amountController,
+                decoration: InputDecoration(labelText: 'Amount'),
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter an amount';
+                  }
+                  final num? number = num.tryParse(value);
+                  if (number == null || number <= 0) {
+                    return 'Enter a valid positive number';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: descriptionController,
+                decoration: InputDecoration(labelText: 'Description'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a description';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Show AlertDialog with form data
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Confirm Item Details'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('Name: ${nameController.text}'),
+                              Text('Amount: ${amountController.text}'),
+                              Text(
+                                  'Description: ${descriptionController.text}'),
+                            ],
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Close the dialog
+                              },
+                              child: Text('Edit'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Close the dialog
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text('Item saved successfully')),
+                                );
+                                Navigator.pop(context); // Go back to main page
+                              },
+                              child: Text('Save'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+                child: Text('Save'),
+              ),
+            ],
+          ),
         ),
       ),
     );
