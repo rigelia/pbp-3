@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:ecomm/pages/item_list_page.dart';
+import 'package:ecomm/widgets/login.dart';
+import 'package:ecomm/widgets/register.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,16 +12,21 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.blue,
-          textTheme: ButtonTextTheme.primary,
-        ),
-      ),
-      home: MainPage(),
-    );
+    return Provider(
+        create: (_) {
+          CookieRequest request = CookieRequest();
+          return request;
+        },
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            buttonTheme: ButtonThemeData(
+              buttonColor: Colors.blue,
+              textTheme: ButtonTextTheme.primary,
+            ),
+          ),
+          home: MainPage(),
+        ));
   }
 }
 
@@ -27,10 +37,41 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Halaman Utama'),
       ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
+              },
+              child: Text('Login'),
+            ),
+            SizedBox(height: 20), // Spacing between buttons
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterPage(),
+                  ),
+                );
+              },
+              child: Text('Register'),
+            ),
+          ],
+        ),
+      ),
       drawer: Drawer(
         child: ListView(
           children: [
             ListTile(
+              leading: Icon(Icons.home),
               title: Text('Halaman Utama'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
@@ -39,6 +80,7 @@ class MainPage extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: Icon(Icons.add),
               title: Text('Tambah Item'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
@@ -46,16 +88,15 @@ class MainPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => FormPage()));
               },
             ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('View Items'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ItemListPage()));
+              },
+            ),
           ],
-        ),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text('Tambah Item'),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => FormPage()));
-          },
         ),
       ),
     );

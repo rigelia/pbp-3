@@ -133,3 +133,40 @@ Disini, widget `MaterialApp` mengatur elemen `theme` yang mengatur tema untuk `p
 Untuk menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter, saya menggunakan widget `Navigator` dan `MaterialPageRoute`. `Navigator` adalah widget yang mengelola tumpukan halaman supaya kita bisa maju dan mundur lewat berbagai halaman.
 
 </details>
+
+<details>
+<summary> <h1> Tugas 9 </h1> </summary>
+
+# Pertanyaan 1
+
+### Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+
+
+# Pertanyaan 2
+
+### Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+
+
+
+# Pertanyaan 3
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+
+
+# Pertanyaan 4
+
+### Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+
+
+
+# Pertanyaan 5
+
+### Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+
+
+# Pertanyaan 6 
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
