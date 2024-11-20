@@ -6,10 +6,8 @@ import '../models/product.dart';
 
 class ItemListPage extends StatelessWidget {
   Future<List<Product>> fetchProducts() async {
-    final response = await http
-        .get(Uri.parse('http://localhost:8000/user-products/'), headers: {
-      'Authorization ': 'Bearer YOUR_AUTH_TOKEN',
-    });
+    final response =
+        await http.get(Uri.parse('http://localhost:8000/main/user-products/'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);

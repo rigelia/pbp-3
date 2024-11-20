@@ -10,7 +10,7 @@ class ItemDetailPage extends StatelessWidget {
 
   Future<Product> fetchProductDetail() async {
     final response = await http.get(
-      Uri.parse('http://localhost:8000/user-products/$productId/'),
+      Uri.parse('http://localhost:8000/main/user-products/$productId/'),
       headers: {
         'Authorization': 'Bearer YOUR_AUTH_TOKEN',
       },

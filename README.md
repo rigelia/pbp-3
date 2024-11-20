@@ -170,3 +170,5 @@ Data dikirim ke server Django melalui permintaan HTTP POST. Pada proses register
 # Pertanyaan 6 
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+Pertama, saya membuat widget `login.dart` dan `register.dart` dengan berisi backend autentikasi. Lalu membuat tombol register dan login pada `main.dart`. Setelah itu saya melakukan routing ke `localhost:8000` pada proyek flutter dan API `auth` pada Django. Model kustom ada di `lib/models`. Untuk endpoint detail pada Django, saya membuat view `show_user_products` yang berisi atribut model di Django. Halaman detail saya implementasikan pada `item_detail_page.dart. Untuk filtering saya menggunakan filtering by pk bawaan Django.
